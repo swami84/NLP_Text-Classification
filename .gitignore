@@ -1,0 +1,13 @@
+.ipynb_checkpoints/
+.idea/
+data/input/
+config/
+catboost_info/
+data/inputs/
+geckodriver.log
+plan/
+data/outputs/cbg_restaurants/
+glove/
+notebooks/.ipynb_checkpoints/
+notebooks/scrap/
+data/models/
