@@ -63,12 +63,12 @@ df_attrs_clean = df_rest_attrs.withColumn('rest_type',
                                                       |hot pot|餐馆|cantonese|dumpling'), F.lit('chinese'))\
               .when(F.lower(F.col('rest_type')).rlike('american|us|hot dog|diner|southern|cajun'), F.lit('american'))\
               .when(F.lower(F.col('rest_type')).rlike('ramen|japanese|izakaya'), F.lit('japanese'))\
-            .when(F.lower(F.col('rest_type')).rlike('sushi'), F.lit('sushi'))\
+              .when(F.lower(F.col('rest_type')).rlike('sushi'), F.lit('sushi'))\
               .when(F.lower(F.col('rest_type')).rlike('steak'), F.lit('steak'))\
               .when(F.lower(F.col('rest_type')).rlike('thai|cambodia'), F.lit('thai'))\
               .when(F.lower(F.col('rest_type')).rlike('chicken'), F.lit('fast food'))\
               .when(F.lower(F.col('rest_type')).rlike('vietnamese|pho'), F.lit('vietnamese'))\
-            .when(F.lower(F.col('rest_type')).rlike('italian|pasta'), F.lit('italian'))\
+              .when(F.lower(F.col('rest_type')).rlike('italian|pasta'), F.lit('italian'))\
                                           .when(F.lower(F.col('rest_type')).rlike('portuguese|salvadoran|peru|\
                                                     |cuban|brazilian|honduran|latin|guatemalan|ecuadorian|\
                                                       |argentinian|venezuelan|colombian|dominican|nicaraguan')\
@@ -86,17 +86,15 @@ df_attrs_clean = df_rest_attrs.withColumn('rest_type',
               .when(F.lower(F.col('rest_type')).rlike('southern|soul food'), F.lit('southern'))\
               .when(F.lower(F.col('rest_type')).rlike('spanish|tapas'), F.lit('spanish'))\
               .when(F.lower(F.col('rest_type')).rlike('asian'), F.lit('asian'))\
-              .when(F.lower(F.col('rest_type')).rlike('european|german|polish|belgian|british|swedish|irish'), F.lit('european'))\
+              .when(F.lower(F.col('rest_type')).rlike('european|german|polish|belgian|british|swedish|irish'),   F.lit('european'))\
               .when(F.lower(F.col('rest_type')).rlike('african'), F.lit('african'))\
               .when(F.lower(F.col('rest_type')).rlike('vegan|vegetarian'), F.lit('vegetarian'))\
-                .when(F.lower(F.col('rest_type')).rlike('stand|venue|club|mall|alley|market|store|association|\
+              .when(F.lower(F.col('rest_type')).rlike('stand|venue|club|mall|alley|market|store|association|\
                                                       |station|juice|ice cream|center|theater|cater|court|fuel|\
                                                       |tobacco|arcade|producer|winery|yogurt|hall|school|grovery|service|\
                                                       |apartment|agency|organization|atm|estate|office|casino|\
-                                                      |company|consultant|gift|deli')\
-                    , F.lit('remove')) \
-                .otherwise(F.lit(F.col('rest_type')))              
-                         )
+                                                      |company|consultant|gift|deli'), F.lit('remove')) \
+                .otherwise(F.lit(F.col('rest_type'))))
 ```
 
  
