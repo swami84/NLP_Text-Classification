@@ -51,9 +51,7 @@ restaurant types as labels and reviews as input.
 
 Model Results:
 
- 
-
-![Heatmap](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap.png)
+![Heatmap](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap_actual_numbers.png)
 
  
 
