@@ -48,130 +48,141 @@ restaurant types as labels and reviews as input.
 
  
 
-\# Cleaning Restaurant Types:
+### Cleaning Restaurant Types:
 
 The restaurant types are combined for similar cuisines as seen below
 
-`` df_attrs_clean = df_rest_attrs.withColumn('rest_type',
+`df_attrs_clean = df_rest_attrs.withColumn('rest_type',`
 
-F.when(F.lower(F.col('rest_type')).rlike('taco\|mexican\|burrito\|mex'),
-F.lit('mexican'))\\
+`F.when(F.lower(F.col('rest_type')).rlike('taco\|mexican\|burrito\|mex'),`
+`F.lit('mexican'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('bar\|pub\|brewery\|beer\|gastropub\|brasserie\|bistro'),
-F.lit('bar'))\\
+`.when(F.lower(F.col('rest_type')).rlike('bar\|pub\|brewery\|beer\|gastropub\|brasserie\|bistro'),`
+`F.lit('bar'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('pizza'), F.lit('pizza'))\\
+`.when(F.lower(F.col('rest_type')).rlike('pizza'), F.lit('pizza'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('irish\|fish & chips\|fish and chips'),
-F.lit('irish'))\\
+`.when(F.lower(F.col('rest_type')).rlike('irish\|fish & chips\|fish and chips'),`
+`F.lit('irish'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('indian\|pakistan\|nepalese'),
-F.lit('indian'))\\
+`.when(F.lower(F.col('rest_type')).rlike('indian\|pakistan\|nepalese'),`
+`F.lit('indian'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('chinese\|dim\|sichuan\|noodle\|mandarin\|shang\|hong\|\\
+`.when(F.lower(F.col('rest_type')).rlike('chinese\|dim\|sichuan\|noodle\|mandarin\|shang\|hong\|\\`
 
-\|hot pot\|餐馆\|cantonese\|dumpling'), F.lit('chinese'))\\
+`\|hot pot\|餐馆\|cantonese\|dumpling'), F.lit('chinese'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('american\|us\|hot
-dog\|diner\|southern\|cajun'), F.lit('american'))\\
+`.when(F.lower(F.col('rest_type')).rlike('american\|us\|hot`
+`dog\|diner\|southern\|cajun'), F.lit('american'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('ramen\|japanese\|izakaya'),
-F.lit('japanese'))\\
+`.when(F.lower(F.col('rest_type')).rlike('ramen\|japanese\|izakaya'),`
+`F.lit('japanese'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('sushi'), F.lit('sushi'))\\
+`.when(F.lower(F.col('rest_type')).rlike('sushi'), F.lit('sushi'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('steak'), F.lit('steak'))\\
+`.when(F.lower(F.col('rest_type')).rlike('steak'), F.lit('steak'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('thai\|cambodia'), F.lit('thai'))\\
+`.when(F.lower(F.col('rest_type')).rlike('thai\|cambodia'), F.lit('thai'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('chicken'), F.lit('fast food'))\\
+`.when(F.lower(F.col('rest_type')).rlike('chicken'), F.lit('fast food'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('vietnamese\|pho'),
-F.lit('vietnamese'))\\
+`.when(F.lower(F.col('rest_type')).rlike('vietnamese\|pho'),`
+`F.lit('vietnamese'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('italian\|pasta'), F.lit('italian'))\\
+`.when(F.lower(F.col('rest_type')).rlike('italian\|pasta'), F.lit('italian'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('portuguese\|salvadoran\|peru\|\\
+`.when(F.lower(F.col('rest_type')).rlike('portuguese\|salvadoran\|peru\|\\`
 
-\|cuban\|brazilian\|honduran\|latin\|guatemalan\|ecuadorian\|\\
+`\|cuban\|brazilian\|honduran\|latin\|guatemalan\|ecuadorian\|\\`
 
-\|argentinian\|venezuelan\|colombian\|dominican\|nicaraguan')\\
+`\|argentinian\|venezuelan\|colombian\|dominican\|nicaraguan')\\`
 
-, F.lit('latin american'))\\
+`, F.lit('latin american'))\\`
 
+`.when(F.lower(F.col('rest_type')).rlike('greek\|gyro\|falafel\|middle`
+`eastern\|afghani\|persian\|\\`
 
+`\|halal\|kebab\|mediterranean\|middle eastern\|lebanese'),`
+`F.lit('mediterranean'))\\`
 
+`.when(F.lower(F.col('rest_type')).rlike('korean\|한식당\|음식점'),`
+`F.lit('korean'))\\`
 
+`.when(F.lower(F.col('rest_type')).rlike('french\|crêperie\|crepe'),`
+`F.lit('french'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('greek\|gyro\|falafel\|middle
-eastern\|afghani\|persian\|\\
+`.when(F.lower(F.col('rest_type')).rlike('lounge\|bistro'), F.lit('bistro'))\\`
 
-\|halal\|kebab\|mediterranean\|middle eastern\|lebanese'),
-F.lit('mediterranean'))\\
+`.when(F.lower(F.col('rest_type')).rlike('burger\|sandwich'), F.lit('burger'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('korean\|한식당\|음식점'),
-F.lit('korean'))\\
+`.when(F.lower(F.col('rest_type')).rlike('brunch\|breakfast\|pancake'),`
+`F.lit('brunch'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('french\|crêperie\|crepe'),
-F.lit('french'))\\
+`.when(F.lower(F.col('rest_type')).rlike('coffee\|cafe\|bake\|bakery\|donut\|bagel'),`
+`F.lit('cafe&bakery'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('lounge\|bistro'), F.lit('bistro'))\\
+`.when(F.lower(F.col('rest_type')).rlike('southern\|soul food'),`
+`F.lit('southern'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('burger\|sandwich'), F.lit('burger'))\\
+`.when(F.lower(F.col('rest_type')).rlike('spanish\|tapas'), F.lit('spanish'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('brunch\|breakfast\|pancake'),
-F.lit('brunch'))\\
+`.when(F.lower(F.col('rest_type')).rlike('asian'), F.lit('asian'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('coffee\|cafe\|bake\|bakery\|donut\|bagel'),
-F.lit('cafe&bakery'))\\
+`.when(F.lower(F.col('rest_type')).rlike('european\|german\|polish\|belgian\|british\|swedish\|irish'),`
+`F.lit('european'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('southern\|soul food'),
-F.lit('southern'))\\
+`.when(F.lower(F.col('rest_type')).rlike('african'), F.lit('african'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('spanish\|tapas'), F.lit('spanish'))\\
+`.when(F.lower(F.col('rest_type')).rlike('vegan\|vegetarian'),`
+`F.lit('vegetarian'))\\`
 
-.when(F.lower(F.col('rest_type')).rlike('asian'), F.lit('asian'))\\
+`.when(F.lower(F.col('rest_type')).rlike('stand\|venue\|club\|mall\|alley\|market\|store\|association\|\\`
 
-.when(F.lower(F.col('rest_type')).rlike('european\|german\|polish\|belgian\|british\|swedish\|irish'),
-F.lit('european'))\\
+`\|station\|juice\|ice cream\|center\|theater\|cater\|court\|fuel\|\\`
 
-.when(F.lower(F.col('rest_type')).rlike('african'), F.lit('african'))\\
+`\|tobacco\|arcade\|producer\|winery\|yogurt\|hall\|school\|grovery\|service\|\\`
 
-.when(F.lower(F.col('rest_type')).rlike('vegan\|vegetarian'),
-F.lit('vegetarian'))\\
+`\|apartment\|agency\|organization\|atm\|estate\|office\|casino\|\\`
 
-.when(F.lower(F.col('rest_type')).rlike('stand\|venue\|club\|mall\|alley\|market\|store\|association\|\\
+`\|company\|consultant\|gift\|deli')\\`
 
-\|station\|juice\|ice cream\|center\|theater\|cater\|court\|fuel\|\\
+`, F.lit('remove')) \\`
 
-\|tobacco\|arcade\|producer\|winery\|yogurt\|hall\|school\|grovery\|service\|\\
-
-\|apartment\|agency\|organization\|atm\|estate\|office\|casino\|\\
-
-\|company\|consultant\|gift\|deli')\\
-
-, F.lit('remove')) \\
-
-.otherwise(F.lit(F.col('rest_type')))
+`.otherwise(F.lit(F.col('rest_type')))`
 
  
 
  
 
-\# Model:
+### Model:
+
+ Sequential Model with Word Embeddings
+
+```python
+EMBED_DIM = 512
+model = Sequential()
+model.add(Embedding(input_dim=total_words, 
+                           output_dim=EMBED_DIM, 
+                           input_length=max_length))
+
+model.add(GlobalMaxPool1D())
+model.add(Dense(256, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(15, activation='softmax'))
+```
+
+
+
+### Model Results:
+
+- Model Accuracy > 80%
+- With American and Seafood we see lower accuracy (60-70%)
+- Mexican , Thai, Chinese and India Restaurants have higher accuracy
 
  
 
- 
-
-\# Model Results:
-
-\* With
-
- 
-
-![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap_actual_numbers.png)
-
- 
+![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap_normalized.png) 
 
  
