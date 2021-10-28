@@ -94,7 +94,7 @@ df_attrs_clean = df_rest_attrs.withColumn('rest_type',
                                                       |tobacco|arcade|producer|winery|yogurt|hall|school|grovery|service|\
                                                       |apartment|agency|organization|atm|estate|office|casino|\
                                                       |company|consultant|gift|deli'), F.lit('remove')) \
-                .otherwise(F.lit(F.col('rest_type'))))
+              .otherwise(F.lit(F.col('rest_type'))))
 ```
 
  
