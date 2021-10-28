@@ -122,8 +122,8 @@ Structure
  ![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap_normalized.png) 
 
 - Model accuracy > 80%
-- May restaurants are tagged as American 
-- Lower accuracy for American, Japanese and Seafood restaurants
-- Mexican , Thai, Chinese and India Restaurants have higher accuracy
+- Many restaurants are tagged as American 
+- Lower classification accuracy (< 70%) for Bar, Japanese and Seafood restaurants
+- Mexican , Thai, Chinese, Pizza and India restaurants have accuracies > 90%
 
  
