@@ -35,8 +35,6 @@ cuisine/type of restaurant.
 
 
 
-
-
 To resolve this issue, we use a NLP based classification model on known restaurant types as labels and reviews as input.
 
  
@@ -99,28 +97,33 @@ df_attrs_clean = df_rest_attrs.withColumn('rest_type',
  Sequential Model with Word Embeddings
 
 ```python
-EMBED_DIM = 512
-model = Sequential()
-model.add(Embedding(input_dim=total_words, 
-                           output_dim=EMBED_DIM, 
-                           input_length=max_length))
+def generate_model(total_words, max_len, EMBED_DIM = 512):
+    model = Sequential()
+    model.add(Embedding(input_dim=total_words, 
+                               output_dim=EMBED_DIM, 
+                               input_length=max_len))
 
-model.add(GlobalMaxPool1D())
-model.add(Dense(256, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(64, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(15, activation='softmax'))
+    model.add(GlobalMaxPool1D())
+    model.add(Dense(256, activation='relu'))
+    model.add(Dropout(0.3))
+    model.add(Dense(15, activation='softmax'))
+    model.compile(optimizer='adam',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+    return model
 ```
 
+Structure
 
+ ![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/model.png)
 
 ### Model Results:
 
  ![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap_normalized.png) 
 
-- Model Accuracy > 80%
-- With American and Seafood we see lower accuracy (60-70%)
+- Model accuracy > 80%
+- May restaurants are tagged as American 
+- Lower accuracy for American, Japanese and Seafood restaurants
 - Mexican , Thai, Chinese and India Restaurants have higher accuracy
 
  
