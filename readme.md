@@ -52,7 +52,7 @@ restaurant types as labels and reviews as input.
 
 The restaurant types are combined for similar cuisines as seen below
 
-```
+```python
 df_attrs_clean = df_rest_attrs.withColumn('rest_type', 
               F.when(F.lower(F.col('rest_type')).rlike('taco|mexican|burrito|mex'), F.lit('mexican'))\
               .when(F.lower(F.col('rest_type')).rlike('bar|pub|brewery|beer|gastropub|brasserie|bistro'), F.lit('bar'))\
