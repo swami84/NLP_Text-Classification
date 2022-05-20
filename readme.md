@@ -6,8 +6,7 @@ Google Maps Restaurant Type Classification
 Description:
 ------------
 
-A large percentage of restaurants in Google Maps are either labelled null or
-generic as seen in Google Maps/Places which need to be tagged to correct
+A large percentage of restaurants in Google Maps are either labelled null or generic as seen in Google Maps/Places which need to be tagged to correct
 cuisine/type of restaurant.
 
 | rest_type   | cnt_per_group | perc_of_count_total |
@@ -33,13 +32,9 @@ cuisine/type of restaurant.
 | bar         | 650           | 1.0863207153004095  |
 | indian      | 614           | 1.026155260299156   |
 
+To resolve this issue, we use a NLP based classification model on known restaurant types as labels and reviews as input. Reviews often contain information about the food items as well the cuisine information that can be useful to tag the restaurants with the correct cuisines. 
 
-
-To resolve this issue, we use a NLP based classification model on known restaurant types as labels and reviews as input.
-
- 
-
-### Cleaning Restaurant Types:
+###  Cleaning Restaurant Types:
 
 The restaurant types are combined for similar cuisines as seen below
 
@@ -90,9 +85,7 @@ df_attrs_clean = df_rest_attrs.withColumn('rest_type',
 
  
 
- 
-
-### Model:
+###  Model:
 
  Sequential Model with Word Embeddings
 
@@ -122,7 +115,7 @@ Structure
  ![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap_normalized.png) 
 
 ```
-Accuracy: 83.4657455382844
+Accuracy: 83.46%
 ```
 
 
