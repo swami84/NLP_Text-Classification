@@ -97,14 +97,14 @@ df_attrs_clean = df_rest_attrs.withColumn('rest_type',
  Sequential Model with Word Embeddings
 
 ```python
-def generate_model(total_words, max_len, EMBED_DIM = 512):
+def generate_model_lstm(total_words, max_len, EMBED_DIM = 512):
     model = Sequential()
     model.add(Embedding(input_dim=total_words, 
                                output_dim=EMBED_DIM, 
                                input_length=max_len))
-
+    model.add(LSTM(128, return_sequences= True))
     model.add(GlobalMaxPool1D())
-    model.add(Dense(256, activation='relu'))
+    model.add(Dense(128, activation='relu'))
     model.add(Dropout(0.3))
     model.add(Dense(15, activation='softmax'))
     model.compile(optimizer='adam',
@@ -115,11 +115,17 @@ def generate_model(total_words, max_len, EMBED_DIM = 512):
 
 Structure
 
- ![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/model.png)
+ ![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/model_lstm.png)
 
 ### Model Results:
 
  ![](https://github.com/swami84/NLP_Text-Classification/blob/main/data/output/classification_heatmap_normalized.png) 
+
+```
+Accuracy: 83.4657455382844
+```
+
+
 
 - Model accuracy > 80%
 - Many restaurants are tagged as American 
