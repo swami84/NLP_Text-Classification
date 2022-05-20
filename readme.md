@@ -83,8 +83,6 @@ df_attrs_clean = df_rest_attrs.withColumn('rest_type',
               .otherwise(F.lit(F.col('rest_type'))))
 ```
 
- 
-
 ###  Model:
 
  Sequential Model with Word Embeddings
